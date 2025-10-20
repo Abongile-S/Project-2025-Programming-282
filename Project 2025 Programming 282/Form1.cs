@@ -26,5 +26,10 @@ namespace Project_2025_Programming_282
         {
 
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
