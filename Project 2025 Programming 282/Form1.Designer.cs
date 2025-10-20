@@ -33,19 +33,27 @@
             this.button3 = new System.Windows.Forms.Button();
             this.Delete = new System.Windows.Forms.Button();
             this.Summary = new System.Windows.Forms.Button();
-            this.Search = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvHeroes = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtAge = new System.Windows.Forms.TextBox();
+            this.txtSuperpower = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtHeroID = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtExamScore = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHeroes)).BeginInit();
             this.SuspendLayout();
             // 
             // Add
             // 
-            this.Add.Location = new System.Drawing.Point(634, 64);
+            this.Add.Location = new System.Drawing.Point(120, 363);
             this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(75, 23);
+            this.Add.Size = new System.Drawing.Size(98, 38);
             this.Add.TabIndex = 0;
             this.Add.Text = "Add Hero";
             this.Add.UseVisualStyleBackColor = true;
@@ -53,7 +61,7 @@
             // 
             // View
             // 
-            this.View.Location = new System.Drawing.Point(634, 116);
+            this.View.Location = new System.Drawing.Point(422, 90);
             this.View.Name = "View";
             this.View.Size = new System.Drawing.Size(75, 23);
             this.View.TabIndex = 1;
@@ -62,58 +70,52 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(634, 176);
+            this.button3.Location = new System.Drawing.Point(422, 345);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 2;
             this.button3.Text = "Update";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Delete
             // 
-            this.Delete.Location = new System.Drawing.Point(634, 235);
+            this.Delete.Location = new System.Drawing.Point(557, 345);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(75, 23);
             this.Delete.TabIndex = 3;
             this.Delete.Text = "Delete";
             this.Delete.UseVisualStyleBackColor = true;
+            this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
             // Summary
             // 
-            this.Summary.Location = new System.Drawing.Point(634, 297);
+            this.Summary.Location = new System.Drawing.Point(680, 345);
             this.Summary.Name = "Summary";
             this.Summary.Size = new System.Drawing.Size(75, 23);
             this.Summary.TabIndex = 4;
             this.Summary.Text = "Summary";
             this.Summary.UseVisualStyleBackColor = true;
-            // 
-            // Search
-            // 
-            this.Search.Location = new System.Drawing.Point(425, 351);
-            this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(75, 23);
-            this.Search.TabIndex = 5;
-            this.Search.Text = "Search";
-            this.Search.UseVisualStyleBackColor = true;
+            this.Summary.Click += new System.EventHandler(this.Summary_Click);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(506, 351);
+            this.button7.Location = new System.Drawing.Point(680, 90);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 6;
             this.button7.Text = "Clear";
             this.button7.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgvHeroes
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 64);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(601, 256);
-            this.dataGridView1.TabIndex = 4;
+            this.dgvHeroes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvHeroes.Location = new System.Drawing.Point(422, 119);
+            this.dgvHeroes.Name = "dgvHeroes";
+            this.dgvHeroes.RowHeadersWidth = 51;
+            this.dgvHeroes.RowTemplate.Height = 24;
+            this.dgvHeroes.Size = new System.Drawing.Size(333, 201);
+            this.dgvHeroes.TabIndex = 4;
             // 
             // label1
             // 
@@ -128,10 +130,88 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 351);
+            this.textBox1.Location = new System.Drawing.Point(246, 132);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(402, 22);
+            this.textBox1.Size = new System.Drawing.Size(100, 22);
             this.textBox1.TabIndex = 9;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(246, 175);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(100, 22);
+            this.txtName.TabIndex = 10;
+            // 
+            // txtAge
+            // 
+            this.txtAge.Location = new System.Drawing.Point(246, 213);
+            this.txtAge.Name = "txtAge";
+            this.txtAge.Size = new System.Drawing.Size(100, 22);
+            this.txtAge.TabIndex = 11;
+            // 
+            // txtSuperpower
+            // 
+            this.txtSuperpower.Location = new System.Drawing.Point(246, 256);
+            this.txtSuperpower.Name = "txtSuperpower";
+            this.txtSuperpower.Size = new System.Drawing.Size(100, 22);
+            this.txtSuperpower.TabIndex = 12;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(246, 298);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(100, 22);
+            this.textBox5.TabIndex = 13;
+            // 
+            // txtHeroID
+            // 
+            this.txtHeroID.AutoSize = true;
+            this.txtHeroID.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHeroID.Location = new System.Drawing.Point(87, 132);
+            this.txtHeroID.Name = "txtHeroID";
+            this.txtHeroID.Size = new System.Drawing.Size(60, 16);
+            this.txtHeroID.TabIndex = 14;
+            this.txtHeroID.Text = "Hero ID";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(87, 178);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 16);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Name";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(87, 219);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 16);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Age";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(87, 262);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(90, 16);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Superpower";
+            // 
+            // txtExamScore
+            // 
+            this.txtExamScore.AutoSize = true;
+            this.txtExamScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtExamScore.Location = new System.Drawing.Point(87, 304);
+            this.txtExamScore.Name = "txtExamScore";
+            this.txtExamScore.Size = new System.Drawing.Size(132, 16);
+            this.txtExamScore.TabIndex = 18;
+            this.txtExamScore.Text = " Hero Exam Score";
             // 
             // Form1
             // 
@@ -139,11 +219,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtExamScore);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtHeroID);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtSuperpower);
+            this.Controls.Add(this.txtAge);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvHeroes);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.Search);
             this.Controls.Add(this.Summary);
             this.Controls.Add(this.Delete);
             this.Controls.Add(this.button3);
@@ -152,7 +240,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHeroes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,11 +253,19 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button Delete;
         private System.Windows.Forms.Button Summary;
-        private System.Windows.Forms.Button Search;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvHeroes;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtAge;
+        private System.Windows.Forms.TextBox txtSuperpower;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label txtHeroID;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label txtExamScore;
     }
 }
 
