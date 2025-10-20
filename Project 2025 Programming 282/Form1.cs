@@ -21,5 +21,10 @@ namespace Project_2025_Programming_282
         {
          Form1.ActiveForm.Close();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
