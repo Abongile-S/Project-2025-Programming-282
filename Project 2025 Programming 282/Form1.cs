@@ -24,9 +24,56 @@ namespace Project_2025_Programming_282
             summaryFilePath = summaryFile;
         }
 
+        public string[] CalculateLevels(int HeroExamScore)
+        {
+            string Rank, ThreatLevel;
+            if (HeroExamScore >= 81)
+            {
+                return new string[] { "S-Rank", "Finals week" };
+            }
+            else if (HeroExamScore >= 61)
+            {
+                return new string[] { "A-Rank", "Midterm Madness" };
+            }
+            else if (HeroExamScore >= 41)
+            {
+                return new string[] { "B-Rank", "Group Project Gone Wrong" };
+            }
+            else
+            {
+                return new string[] { "C-Rank", "Pop Quiz" };
+            }
+
+
+
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1.ActiveForm.Close();
+            try
+            {
+                int HeroID = int.Parse(textBox1.Text);
+                string name = txtName.Text;
+                int age = int.Parse(txtAge.Text);
+                string superpower = txtSuperpower.Text;
+                int HeroExamScore = int.Parse(textBox5.Text);
+                string[] array = CalculateLevels(HeroExamScore);
+
+                string rank = array[0];
+                string threatLevel = array[1];
+
+                CalculateLevels(HeroExamScore);
+
+
+                string hero = $"Hero details: {HeroID}, {name} , {age}, {superpower}, {HeroExamScore}, {rank},  {threatLevel} \n";
+                File.AppendAllText(heroFilePath, hero);
+                MessageBox.Show("New Hero Added");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -41,7 +88,7 @@ namespace Project_2025_Programming_282
 
         private void button3_Click(object sender, EventArgs e)
         {
-        
+
         }
 
         private void Summary_Click(object sender, EventArgs e)
@@ -118,6 +165,53 @@ namespace Project_2025_Programming_282
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void View_Click(object sender, EventArgs e)
+        {
+
+            if (dgvHeroes.Columns.Count == 0)
+            {
+                dgvHeroes.Columns.Add("HeroID", "HeroID");
+                dgvHeroes.Columns.Add("Name", "Name");
+                dgvHeroes.Columns.Add("Age", "Age");
+                dgvHeroes.Columns.Add("SuperPower", "SuperPower");
+                dgvHeroes.Columns.Add("ExamScore", "ExamScore");
+                dgvHeroes.Columns.Add("Rank", "Rank");
+                dgvHeroes.Columns.Add("ThreatLevel", "ThreatLevel");
+
+            }
+            if (!File.Exists(heroFilePath))
+            {
+                MessageBox.Show("No superhero entries found");
+                dgvHeroes.Rows.Clear();
+                dgvHeroes.Columns.Clear();
+            }
+            else
+            {
+
+                using (StreamReader read = new StreamReader(heroFilePath))
+                {
+                    string row;
+                    while ((row = read.ReadLine()) != null)
+                    {
+                        string[] section = row.Split(',');
+
+                        dgvHeroes.Rows.Add(section);
+                    }
+                }
+
+               // using (StreamReader read = new StreamReader(heroFilePath))
+              //  {
+                  //  string row;
+                   // while ((row = read.ReadLine()) != null)
+                  //  {
+                   //     string[] section = row.Split(',');
+
+                   //     dgvHeroes.Rows.Add(section);
+                  //  }
+               // }
+            }
         }
     }
 }

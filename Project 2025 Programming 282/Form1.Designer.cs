@@ -67,6 +67,7 @@
             this.View.TabIndex = 1;
             this.View.Text = "View";
             this.View.UseVisualStyleBackColor = true;
+            this.View.Click += new System.EventHandler(this.View_Click);
             // 
             // button3
             // 
