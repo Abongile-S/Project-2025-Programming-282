@@ -30,7 +30,7 @@
         {
             this.Add = new System.Windows.Forms.Button();
             this.View = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.UpdateButton = new System.Windows.Forms.Button();
             this.Delete = new System.Windows.Forms.Button();
             this.Summary = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -69,15 +69,15 @@
             this.View.UseVisualStyleBackColor = true;
             this.View.Click += new System.EventHandler(this.View_Click);
             // 
-            // button3
+            // UpdateButton
             // 
-            this.button3.Location = new System.Drawing.Point(422, 345);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Update";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.UpdateButton.Location = new System.Drawing.Point(422, 345);
+            this.UpdateButton.Name = "UpdateButton";
+            this.UpdateButton.Size = new System.Drawing.Size(75, 23);
+            this.UpdateButton.TabIndex = 2;
+            this.UpdateButton.Text = "Update";
+            this.UpdateButton.UseVisualStyleBackColor = true;
+            this.UpdateButton.Click += new System.EventHandler(this.button3_Click);
             // 
             // Delete
             // 
@@ -107,6 +107,7 @@
             this.button7.TabIndex = 6;
             this.button7.Text = "Clear";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // dgvHeroes
             // 
@@ -235,7 +236,7 @@
             this.Controls.Add(this.button7);
             this.Controls.Add(this.Summary);
             this.Controls.Add(this.Delete);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.UpdateButton);
             this.Controls.Add(this.View);
             this.Controls.Add(this.Add);
             this.Name = "Form1";
@@ -251,7 +252,7 @@
 
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.Button View;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button UpdateButton;
         private System.Windows.Forms.Button Delete;
         private System.Windows.Forms.Button Summary;
         private System.Windows.Forms.Button button7;
