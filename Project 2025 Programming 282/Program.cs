@@ -37,7 +37,7 @@ namespace Project_2025_Programming_282
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(heroFile, summaryFile));
+            Application.Run(new Form1(heroFile, summaryFile));aw
         }
     }
 }
