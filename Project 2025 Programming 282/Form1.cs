@@ -14,9 +14,11 @@ namespace Project_2025_Programming_282
 {
     public partial class Form1 : Form
     {
-
+        // Stores file paths for heroes and summary text files
         private string heroFilePath;
         private string summaryFilePath;
+
+        // Sets up file paths when the form starts
         public Form1(string heroFile, string summaryFile)
         {
             InitializeComponent();
@@ -24,6 +26,7 @@ namespace Project_2025_Programming_282
             summaryFilePath = summaryFile;
         }
 
+        // Loads hero data from the text file into the DataGridView
         private void LoadHeroes()
         {
             dgvHeroes.Rows.Clear();
@@ -49,7 +52,7 @@ namespace Project_2025_Programming_282
                     dgvHeroes.Rows.Add(parts);
             }
         }
-
+        // Calculates the hero's rank and threat level based on exam score
         public string[] CalculateLevels(int HeroExamScore)
         {
             if (HeroExamScore >= 81)
@@ -62,7 +65,7 @@ namespace Project_2025_Programming_282
                 return new[] { "C-Rank", "Pop Quiz" };
 
         }
-
+        // Adds a new hero to the text file
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -79,10 +82,12 @@ namespace Project_2025_Programming_282
 
                 CalculateLevels(HeroExamScore);
 
-
+                // Save hero info in text file
                 string hero = $"Hero details: {HeroID}, {name} , {age}, {superpower}, {HeroExamScore}, {rank},  {threatLevel} \n";
                 File.AppendAllText(heroFilePath, hero);
                 MessageBox.Show("New Hero Added");
+
+                LoadHeroes(); // refresh display
             }
             catch (Exception ex)
             {
@@ -99,7 +104,7 @@ namespace Project_2025_Programming_282
         {
 
         }
-
+        // Updates an existing hero's information
         private void button3_Click(object sender, EventArgs e)
         {
             if (dgvHeroes.SelectedRows.Count == 0)
@@ -118,30 +123,36 @@ namespace Project_2025_Programming_282
                 for (int i = 0; i < lines.Count; i++)
                 {
                     if (string.IsNullOrWhiteSpace(lines[i])) continue;
+
                     var parts = lines[i].Split(',');
+                    if (parts.Length < 7) continue;
+
                     if (parts[0].Trim() == selectedID)
                     {
-                        int age = int.Parse(txtAge.Text);
-                        int score = int.Parse(txtExamScore.Text);
+                        // Get updated values from textboxes
+                        int.TryParse(txtAge.Text.Trim(), out int age);
+                        int.TryParse(textBox5.Text.Trim(), out int score);
+
                         string[] lvl = CalculateLevels(score);
                         string rank = lvl[0];
                         string threat = lvl[1];
 
-                        lines[i] = $"{selectedID},{txtName.Text},{age},{txtSuperpower.Text},{score},{rank},{threat}";
+                        // Replace the old line with the new one
+                        lines[i] = $"{selectedID},{txtName.Text.Trim()},{age},{txtSuperpower.Text.Trim()},{score},{rank},{threat}";
                         break;
                     }
                 }
-
+                // Save all heroes back to file
                 File.WriteAllLines(heroFilePath, lines);
                 MessageBox.Show("Hero updated successfully!");
                 LoadHeroes();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Error updating hero.");
+                MessageBox.Show("Error updating hero: " + ex.Message);
             }
         }
-
+        // Generates and saves a summary report of all heroes
         private void Summary_Click(object sender, EventArgs e)
         {
             if (!File.Exists(heroFilePath))
@@ -176,7 +187,7 @@ namespace Project_2025_Programming_282
 
                 totalAge += age;
                 totalScore += score;
-
+                // Count how many heroes per rank
                 switch (rank)
                 {
                     case "S-Rank": sCount++; break;
@@ -195,6 +206,7 @@ namespace Project_2025_Programming_282
             double avgAge = totalAge / total;
             double avgScore = totalScore / total;
 
+            // Create summary text
             string summary = $"Total Heroes: {total}\n" +
                              $"Average Age: {avgAge:F2}\n" +
                              $"Average Score: {avgScore:F2}\n" +
@@ -203,7 +215,7 @@ namespace Project_2025_Programming_282
             File.WriteAllText(summaryFilePath, summary);
             MessageBox.Show("Summary saved to Desktop!");
         }
-
+        // Deletes the selected hero from the text file
         private void Delete_Click(object sender, EventArgs e)
         {
             if (dgvHeroes.SelectedRows.Count == 0)
@@ -228,6 +240,7 @@ namespace Project_2025_Programming_282
                 var lines = File.ReadAllLines(heroFilePath).ToList();
                 int index = -1;
 
+                // Find the hero's line in file
                 for (int i = 0; i < lines.Count; i++)
                 {
                     if (string.IsNullOrWhiteSpace(lines[i])) continue;
@@ -239,6 +252,7 @@ namespace Project_2025_Programming_282
                     }
                 }
 
+                // Remove that hero from the file
                 if (index != -1)
                     lines.RemoveAt(index);
 
@@ -256,26 +270,27 @@ namespace Project_2025_Programming_282
         {
 
         }
-
+        // Displays all heroes in the DataGridView
         private void View_Click(object sender, EventArgs e)
         {
             LoadHeroes();
         }
 
+        // Clears all textboxes on the form
         private void button7_Click(object sender, EventArgs e)
         {
+            // Clears all text boxes
+            textBox1.Clear();       
+            txtName.Clear();        
+            txtAge.Clear();        
+            txtSuperpower.Clear();  
+            textBox5.Clear();       
+
+            // Optional: Deselect grid
+            dgvHeroes.ClearSelection();
+        }
+
 
         }
-        private void dgvHeroes_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                txtHeroID.Text = dgvHeroes.Rows[e.RowIndex].Cells["HeroID"].Value.ToString();
-                txtName.Text = dgvHeroes.Rows[e.RowIndex].Cells["Name"].Value.ToString();
-                txtAge.Text = dgvHeroes.Rows[e.RowIndex].Cells["Age"].Value.ToString();
-                txtSuperpower.Text = dgvHeroes.Rows[e.RowIndex].Cells["SuperPower"].Value.ToString();
-                txtExamScore.Text = dgvHeroes.Rows[e.RowIndex].Cells["ExamScore"].Value.ToString();
-            }
-        }
     }
-}
+
